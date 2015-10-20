@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_region" default="compile.module.region">
+  <dirname property="module.region.basedir" file="${ant.file.module_region}"/>
+  
+  <property name="module.jdk.home.region" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.region" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.region" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.region" value="-encoding UTF-8 -source 1.6 -target 1.6 ${compiler.args}"/>
+  
+  <property name="region.output.dir" value="${module.region.basedir}/target/classes"/>
+  <property name="region.testoutput.dir" value="${module.region.basedir}/target/test-classes"/>
+  
+  <path id="region.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="region.module.production.classpath">
+    <path refid="${module.jdk.classpath.region}"/>
+    <path refid="library.maven:_org.glassfish:bean-validator:3.0-jboss-4.0.2.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.enterprise.deploy:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.jms:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.management.j2ee:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.ejb:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.annotation:3.0.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.0.0.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.resource:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.transaction:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.auth.message:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.jacc:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp.jstl:3.0.1.classpath"/>
+    <path refid="library.maven:_javax.xml.bind:jaxb-api-osgi:2.2.1.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:jstl-impl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp.jstl:jstl-api:1.2.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.3.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_javax.xml:webservices-api-osgi:2.0.1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-osgi-bundle:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_javax.enterprise:cdi-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor-api:1.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:jsr250-api:1.0.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-core:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-ext:1.5.10.classpath"/>
+    <path refid="library.maven:_ch.qos.cal10n:cal10n-api:0.7.2.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-spi:1.0-sp1.classpath"/>
+    <path refid="library.maven:_javassist:javassist:3.11.0.ga.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+    <path refid="library.maven:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor:1.0.0-cr11.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:javax.servlet.jsp.jstl:1.2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:3.2.3.release.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-redis:1.3.0.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:3.2.9.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.4.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.1.34.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.2.2.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjrt:1.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.2.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.2.1.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.2.0.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.26.classpath"/>
+    <path refid="library.maven:_org.quartz-scheduler:quartz:2.2.1.classpath"/>
+    <path refid="library.maven:_c3p0:c3p0:0.9.1.1.classpath"/>
+  </path>
+  
+  <path id="region.runtime.production.module.classpath">
+    <pathelement location="${region.output.dir}"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp.jstl:jstl-api:1.2.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:javax.servlet.jsp.jstl:1.2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:3.2.3.release.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-redis:1.3.0.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:3.2.9.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.4.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.1.34.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.2.2.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjrt:1.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.2.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.2.1.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.2.0.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.26.classpath"/>
+    <path refid="library.maven:_org.quartz-scheduler:quartz:2.2.1.classpath"/>
+    <path refid="library.maven:_c3p0:c3p0:0.9.1.1.classpath"/>
+  </path>
+  
+  <path id="region.module.classpath">
+    <path refid="${module.jdk.classpath.region}"/>
+    <pathelement location="${region.output.dir}"/>
+    <path refid="library.maven:_org.glassfish:bean-validator:3.0-jboss-4.0.2.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.enterprise.deploy:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.jms:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.management.j2ee:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.ejb:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.annotation:3.0.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.0.0.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.resource:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.transaction:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.auth.message:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.jacc:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp.jstl:3.0.1.classpath"/>
+    <path refid="library.maven:_javax.xml.bind:jaxb-api-osgi:2.2.1.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:jstl-impl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp.jstl:jstl-api:1.2.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.3.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_javax.xml:webservices-api-osgi:2.0.1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-osgi-bundle:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_javax.enterprise:cdi-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor-api:1.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:jsr250-api:1.0.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-core:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-ext:1.5.10.classpath"/>
+    <path refid="library.maven:_ch.qos.cal10n:cal10n-api:0.7.2.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-spi:1.0-sp1.classpath"/>
+    <path refid="library.maven:_javassist:javassist:3.11.0.ga.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+    <path refid="library.maven:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor:1.0.0-cr11.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:javax.servlet.jsp.jstl:1.2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:3.2.3.release.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-redis:1.3.0.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:3.2.9.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.4.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.1.34.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.2.2.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjrt:1.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.2.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.2.1.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.2.0.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.26.classpath"/>
+    <path refid="library.maven:_org.quartz-scheduler:quartz:2.2.1.classpath"/>
+    <path refid="library.maven:_c3p0:c3p0:0.9.1.1.classpath"/>
+  </path>
+  
+  <path id="region.runtime.module.classpath">
+    <pathelement location="${region.testoutput.dir}"/>
+    <pathelement location="${region.output.dir}"/>
+    <path refid="library.maven:_org.glassfish:bean-validator:3.0-jboss-4.0.2.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.enterprise.deploy:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.jms:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.management.j2ee:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.ejb:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.annotation:3.0.1.classpath"/>
+    <path refid="library.maven:_org.eclipse.persistence:javax.persistence:2.0.0.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.resource:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.transaction:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.auth.message:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.security.jacc:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp:3.0.1.classpath"/>
+    <path refid="library.maven:_org.glassfish:javax.servlet.jsp.jstl:3.0.1.classpath"/>
+    <path refid="library.maven:_javax.xml.bind:jaxb-api-osgi:2.2.1.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:jstl-impl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp.jstl:jstl-api:1.2.classpath"/>
+    <path refid="library.maven:_javax.mail:mail:1.4.3.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.classpath"/>
+    <path refid="library.maven:_javax.xml:webservices-api-osgi:2.0.1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-osgi-bundle:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_javax.enterprise:cdi-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor-api:1.1.classpath"/>
+    <path refid="library.maven:_javax.annotation:jsr250-api:1.0.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-api:1.0-sp1.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-core:1.0.1-sp3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-ext:1.5.10.classpath"/>
+    <path refid="library.maven:_ch.qos.cal10n:cal10n-api:0.7.2.classpath"/>
+    <path refid="library.maven:_org.jboss.weld:weld-spi:1.0-sp1.classpath"/>
+    <path refid="library.maven:_javassist:javassist:3.11.0.ga.classpath"/>
+    <path refid="library.maven:_com.google.collections:google-collections:1.0.classpath"/>
+    <path refid="library.maven:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.maven:_org.jboss.interceptor:jboss-interceptor:1.0.0-cr11.classpath"/>
+    <path refid="library.maven:_org.glassfish.web:javax.servlet.jsp.jstl:1.2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:3.2.3.release.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:3.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-redis:1.3.0.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:3.2.9.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.4.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.1.34.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.2.2.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjrt:1.7.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.2.1.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.2.1.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.2.0.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.26.classpath"/>
+    <path refid="library.maven:_org.quartz-scheduler:quartz:2.2.1.classpath"/>
+    <path refid="library.maven:_c3p0:c3p0:0.9.1.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.region">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.region">
+    <patternset refid="excluded.from.module.region"/>
+  </patternset>
+  
+  <path id="region.module.sourcepath">
+    <dirset dir="${module.region.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.region" depends="compile.module.region.production,compile.module.region.tests" description="Compile module region"/>
+  
+  <target name="compile.module.region.production" depends="register.custom.compilers" description="Compile module region; production classes">
+    <mkdir dir="${region.output.dir}"/>
+    <javac2 destdir="${region.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.region}/javac">
+      <compilerarg line="${compiler.args.region}"/>
+      <bootclasspath refid="region.module.bootclasspath"/>
+      <classpath refid="region.module.production.classpath"/>
+      <src refid="region.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.region"/>
+    </javac2>
+    
+    <copy todir="${region.output.dir}">
+      <fileset dir="${module.region.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.region.tests" depends="register.custom.compilers,compile.module.region.production" description="compile module region; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.region" description="cleanup module">
+    <delete dir="${region.output.dir}"/>
+    <delete dir="${region.testoutput.dir}"/>
+  </target>
+</project>
