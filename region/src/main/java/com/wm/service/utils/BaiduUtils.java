@@ -1,15 +1,16 @@
 package com.wm.service.utils;
 
-import org.slf4j.Logger;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wm.service.constants.BaiduConstants;
 import com.wm.service.model.GeoAddressComponent;
 import com.wm.service.model.Geocoding;
 import com.wm.service.model.Geolocation;
+import org.apache.log4j.Logger;
 
 public class BaiduUtils {
+
+    private static Logger logger = Logger.getLogger(BaiduUtils.class);
 
     /**
      * @百度地址解析（逆地理编码服务）使用百度经纬度
@@ -20,7 +21,7 @@ public class BaiduUtils {
      * @author wangmeng
      * @time 2015年5月4日下午10:18:04
      */
-    public static Geocoding parseLnyLat(String lnylat, Logger logger) {
+    public static Geocoding parseLnyLat(String lnylat) {
         logger.info("百度地址解析接口：经维度=" + lnylat + "——解析地址start");
         Geocoding geocoding = null;
         if (StringUtils.isEmpty(lnylat)) {
