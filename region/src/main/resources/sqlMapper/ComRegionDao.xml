@@ -78,15 +78,39 @@
       and layer = #{layer,jdbcType=INTEGER}
   </select>
 
-  <!-- 依据point(left,right)和layer获取节点的子节点-->
+  <!-- 依据父point(left,right)和layer获取节点的子节点list-->
   <select id="selectNextByPointsLayer" resultMap="BaseResultMap" >
     select
     	<include refid="base_columns"></include>
     from com_region
     where
-      and left = #{left,jdbcType=INTEGER}
-      and right = #{right,jdbcType=INTEGER}
+      left &lt; #{left,jdbcType=INTEGER}
+      and right &lt; #{right,jdbcType=INTEGER}
       and layer = #{layer,jdbcType=INTEGER} +1
+  </select>
+
+  <!-- 依据父point(left,right)和layer和子point、name获取节点的子节点-->
+  <select id="selectNextByPointsLayerName" resultMap="BaseResultMap" >
+    select
+    <include refid="base_columns"></include>
+    from com_region
+    where
+    left &lt; #{left,jdbcType=INTEGER}
+    and right &lt; #{right,jdbcType=INTEGER}
+    and layer = #{layer,jdbcType=INTEGER} +1
+    and name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 依据point(left,right)和layer和name获取节点的子节点list的一个节点-->
+  <select id="selectOneByPointsLayerName" resultMap="BaseResultMap" >
+    select
+    <include refid="base_columns"></include>
+    from com_region
+    where
+      left &lt; #{left,jdbcType=INTEGER}
+      and right &lt; #{right,jdbcType=INTEGER}
+      and layer = #{layer,jdbcType=INTEGER} +1
+      and name = #{name,jdbcType=VARCHAR}
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap" >

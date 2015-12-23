@@ -43,13 +43,34 @@ public class ComRegionManager {
         // 2:获取根节点
         ComRegion region = comRegionDao.selectRootPoints();
         // 3:验证省节点是否存在06
-        region = comRegionDao.selectNextByPointsLayer(region.getLeft(),region.getRight(),region.getLayer());
-        if(region == null){
+        region = comRegionDao.selectNextByPointsLayerName(region.getLeft(), region.getRight(), region.getLayer(), obj.getProvince());
+        if (region == null ){
             logger.info("ComRegionManager-pointsIsExists:验证省节点不存在");
             return true;
         }
         // 4:验证市节点是否存在
-        return true;
+        region = comRegionDao.selectNextByPointsLayerName(region.getLeft(), region.getRight(), region.getLayer(), obj.getCity());
+        if (region == null ){
+            logger.info("ComRegionManager-pointsIsExists:验证市节点不存在");
+            return true;
+        }
+        // 4:验证县节点是否存在
+        region = comRegionDao.selectNextByPointsLayerName(region.getLeft(), region.getRight(), region.getLayer(), obj.getDistrict());
+        if (region == null ){
+            logger.info("ComRegionManager-pointsIsExists:验证县节点不存在");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @note 插入省节点
+     * @param record
+     * @return
+     */
+    public int insertProvincePoints(ComRegion record){
+        //1：验证省节点是否存在
+        return 0;
     }
 
     public int insert(ComRegion record){
